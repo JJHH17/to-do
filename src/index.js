@@ -1,5 +1,5 @@
 import "./styles.css";
-import { Project, newProject } from "./projectBuilder";
+import { Project } from "./projectBuilder";
 import { printToSidebar, buttonSelector } from "./sidebar";
 import { createProjectModal } from "./buildProjectModal";
 
