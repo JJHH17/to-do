@@ -1,8 +1,14 @@
 import "./styles.css";
 import { Project, newProject } from "./projectBuilder";
-import { printToSidebar } from "./sidebar";
+import { printToSidebar, buttonSelector } from "./sidebar";
+import { createProjectModal } from "./buildProjectModal";
 
 function printProject() {
     printToSidebar(newProject());
 }
-printProject()
+// printProject()
+
+// Button press creates modal
+buttonSelector().addEventListener("click", () => {
+    createProjectModal();
+})
