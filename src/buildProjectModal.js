@@ -1,3 +1,8 @@
+import { Project } from "./projectBuilder";
+import { printToSidebar } from "./sidebar";
+
+
+
 // Responsible for modal that appears when user creates a project
 
 // Selects main page container to be used to build modal
@@ -28,6 +33,7 @@ function formCreate() {
 
     // Project Name input
     const projectNameInput = document.createElement("input");
+    projectNameInput.id = "projectNameInput";
     modalForm.appendChild(projectNameInput);
 
     // Project Description label
@@ -37,6 +43,7 @@ function formCreate() {
 
     // Project Description Input
     const projectDescInput = document.createElement("input");
+    projectDescInput.id = "projectDescInput";
     modalForm.appendChild(projectDescInput);
 
     // Creates button
@@ -45,6 +52,17 @@ function formCreate() {
     submitButton.textContent = "Create";
     modalForm.appendChild(submitButton);
 
+    // Handle submit button
+    // MOVE TO ITS OWN FUNCTION AND CALL, MAKE DECISION AT END OF PROJECT
+    submitButton.addEventListener("click", () => {
+        // Creates new project 
+        const newProject = new Project(projectNameInput, projectDescInput);
+        // Removes modal once pressed
+        modalForm.remove(); // Change to modal div!!!!!!!
+        // Print to display
+        printToSidebar(newProject);
+    })
+    
     return modalForm;
 }
 
@@ -74,6 +92,5 @@ export function createProjectModal() {
     // Appends form to div
     container.appendChild(form);
 }   
-
 
 // Creates modal based on above functions, to be then used on "Add project" button press
