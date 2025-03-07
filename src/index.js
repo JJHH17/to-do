@@ -1,2 +1,8 @@
 import "./styles.css";
-import 
+import { Project, newProject } from "./projectBuilder";
+import { printToSidebar } from "./sidebar";
+
+function printProject() {
+    console.log(newProject());
+}
+printProject()
