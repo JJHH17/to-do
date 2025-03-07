@@ -26,15 +26,14 @@ function formCreate() {
     projectNameLabel.textContent = "Project Name:";
     modalForm.appendChild(projectNameLabel);
 
+    // Project Name input
+    const projectNameInput = document.createElement("input");
+    modalForm.appendChild(projectNameInput);
+
     // Project Description label
     const projectDescLabel = document.createElement("label");
     projectDescLabel.textContent = "Project Description:";
     modalForm.appendChild(projectDescLabel);
-
-    // Creates input
-    // Project Name input
-    const projectNameInput = document.createElement("input");
-    modalForm.appendChild(projectNameInput);
 
     // Project Description Input
     const projectDescInput = document.createElement("input");
@@ -45,8 +44,23 @@ function formCreate() {
     submitButton.type = "button";
     submitButton.textContent = "Create";
     modalForm.appendChild(submitButton);
-    // Appends to modal div
+
     return modalForm;
+}
+
+// Modal styling function
+function modalStyling(modal) {
+    // Positions to absolute 
+    modal.style.position = "absolute";
+    // Centers modal
+    modal.style.right = "50%";
+    modal.style.left = "50%";
+    modal.style.top = "35%";
+    // Adds border
+
+    // Will later align the individual items
+
+    return modal;
 }
 
 // Adds form to div, create project modal
@@ -55,6 +69,8 @@ export function createProjectModal() {
     const container = modalDiv();
     // Creates form
     const form = formCreate();
+    // Add styling function here
+    modalStyling(container);
     // Appends form to div
     container.appendChild(form);
 }   
