@@ -20,6 +20,13 @@ function modalDiv() {
     return newDiv;
 }
 
+// Deletes modal div
+function deleteModalDiv() {
+    const container = document.querySelector("#projectModal");
+    container.remove();
+    return container;
+}
+
 // Creates form for user to populate
 function formCreate() {
     // Creates form
@@ -58,7 +65,7 @@ function formCreate() {
         // Creates new project 
         const newProject = new Project(projectNameInput, projectDescInput);
         // Removes modal once pressed
-        modalForm.remove(); // Change to modal div!!!!!!!
+        deleteModalDiv();
         // Print to display
         printToSidebar(newProject);
     })
