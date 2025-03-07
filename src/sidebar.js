@@ -14,6 +14,7 @@ function appendSidebarDiv() {
 
 // Displays an item to sidebar
 export function printToSidebar(project) {
-    sidebarSelector().appendChild(appendSidebarDiv())
-    appendSidebarDiv().textContent = project;
+    const newdiv = appendSidebarDiv(); // creates the new div
+    newdiv.textContent = project;
+    sidebarSelector().appendChild(newdiv);
 }

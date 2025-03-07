@@ -3,6 +3,6 @@ import { Project, newProject } from "./projectBuilder";
 import { printToSidebar } from "./sidebar";
 
 function printProject() {
-    console.log(newProject());
+    printToSidebar(newProject());
 }
 printProject()
