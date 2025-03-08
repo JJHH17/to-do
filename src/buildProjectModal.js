@@ -1,8 +1,6 @@
 import { Project } from "./projectBuilder";
 import { printToSidebar } from "./sidebar";
 
-
-
 // Responsible for modal that appears when user creates a project
 
 // Selects main page container to be used to build modal
@@ -99,5 +97,3 @@ export function createProjectModal() {
     // Appends form to div
     container.appendChild(form);
 }   
-
-// Creates modal based on above functions, to be then used on "Add project" button press
