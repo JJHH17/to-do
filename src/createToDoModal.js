@@ -11,6 +11,12 @@ function toDoModalDiv() {
     const modalDiv = document.createElement("div");
     modalDiv.id = "toDoModalContainer";
     parentDiv().appendChild(modalDiv);
+
+    // Styles div
+    modalDiv.style.position = "absolute";
+    modalDiv.style.right = "50%";
+    modalDiv.style.left = "50%";
+    modalDiv.style.top = "25%";
     return modalDiv;
 }
 
