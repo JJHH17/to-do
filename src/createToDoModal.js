@@ -6,20 +6,11 @@ function parentDiv() {
     return parentDiv;
 }
 
-// Adds button to parent div
-// To be enabled/called when a user selects or creates project
-export function addToDoButton() {
-    const toDoButton = document.createElement("button");
-    toDoButton.type = "button";
-    toDoButton.textContent = "+";
-    // Adds to div
-    parentDiv().appendChild(toDoButton);
-}
-
 // Create div to contain toDo modal
 function toDoModalDiv() {
     const modalDiv = document.createElement("div");
     modalDiv.id = "toDoModalContainer";
+    parentDiv().appendChild(modalDiv);
     return modalDiv;
 }
 
@@ -63,10 +54,34 @@ export function toDoFormItems() {
     const priorityInput = document.createElement("input");
     parentForm.appendChild(priorityLabel);
     parentForm.appendChild(priorityInput);
+
+    // Manages submit button
+    const submit = document.createElement("button");
+    submit.textContent = "Submit";
+    submit.type = "button";
+    parentForm.appendChild(submit);
+
+    return parentForm;
 }
 
 // Opens modal to enter project details after button press
 
 
+// Adds button to parent div
+// To be enabled/called when a user selects or creates project
+export function toDoButton() {
+    const toDoButton = document.createElement("button");
+    toDoButton.type = "button";
+    toDoButton.textContent = "+";
+    // Adds to div
+    parentDiv().appendChild(toDoButton);
 
-// addToDoButton(); // Remove when done testing
+    // Handles button click
+    toDoButton.addEventListener("click", () => {
+        toDoFormItems();
+    })
+    return toDoButton;
+}
+
+
+toDoButton(); // Remove when done testing
