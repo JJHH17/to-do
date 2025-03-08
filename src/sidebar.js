@@ -1,3 +1,5 @@
+import { toDoButton } from "./createToDoModal";
+
 // Responsible for sidebar displaying behaviour, as well as 
 // Button to create a new project
 
@@ -33,6 +35,10 @@ export function printToSidebar(project) {
         // If clicked, the project details are displayed on main page container
         const mainBody = mainBodySelector();
         mainBody.textContent = project.title.value + project.description.value + project.toDos.value;
+
+        // Allows user to add new to do entry on button click
+        toDoButton();
+
         return mainBody;
     })
 }

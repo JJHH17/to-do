@@ -90,6 +90,3 @@ export function toDoButton() {
     })
     return toDoButton;
 }
-
-
-toDoButton(); // Remove when done testing
