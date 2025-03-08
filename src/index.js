@@ -2,6 +2,7 @@ import "./styles.css";
 import { Project } from "./projectBuilder";
 import { printToSidebar, buttonSelector } from "./sidebar";
 import { createProjectModal } from "./buildProjectModal";
+export { addToDoButton } from "./createToDoModal";
 
 function printProject() {
     printToSidebar(newProject());
