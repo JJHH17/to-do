@@ -5,10 +5,6 @@ import { createProjectModal } from "./buildProjectModal";
 import { addToDoButton } from "./createToDoModal";
 import { toDoFormItems, toDoButton } from "./createToDoModal";
 
-function printProject() {
-    printToSidebar(newProject());
-}
-
 // Button press creates modal
 buttonSelector().addEventListener("click", () => {
     createProjectModal();

@@ -1,3 +1,5 @@
+import { Project } from "./projectBuilder";
+
 // Allows user to create to do items, within the parent project
 
 // Adds button to main element of page
@@ -68,6 +70,9 @@ export function toDoFormItems() {
     parentForm.appendChild(submit);
 
     // Handling submit button logic, creates to do items
+    submit.addEventListener("click", () => {
+        
+    })
 
     return parentForm;
 }
