@@ -56,8 +56,9 @@ function addProjectModal() {
         createProject(projectTitleInput.value, projectDescInput.value);
         renderToSidebar();
         // Modal is removed
-
+        form.remove();
         // Create project button is re-added
+        addProjectButton();
     })
 
     // Styles
@@ -79,6 +80,7 @@ function addProjectButton() {
     // Handles triggering of modal
     addProject.addEventListener("click", () => {
         // Create project button is removed
+        addProject.remove();
         addProjectModal();
     })
 }
@@ -89,8 +91,6 @@ addProjectButton()
 function renderToSidebar() {
     const sidebar = selectSidebar();
     sidebar.innerHTML = ""; // Clears before rendering
-    addProjectButton();
-
 
     projectArray.forEach((project, index) => {
         let projectDiv = document.createElement("div");
@@ -100,3 +100,5 @@ function renderToSidebar() {
         // Modify further to make divs clickable
     });
 }
+
+// TODO - FIX POSITIONING OF CREATE PROJECT BUTTON - PLACE AT TOP OF SIDEBAR
