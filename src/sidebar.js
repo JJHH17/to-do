@@ -6,6 +6,11 @@ function sidebarSelector() {
     return sidebar;
 }
 
+function mainBodySelector() {
+    const mainBody = document.querySelector("#mainBody");
+    return mainBody;
+}
+
 export function buttonSelector() {
     const createProject = document.querySelector("#addProject");
     return createProject;
@@ -22,4 +27,12 @@ export function printToSidebar(project) {
     const newdiv = appendSidebarDiv(); // creates the new div
     newdiv.textContent = "Project: " + project.title.value + " " + "Description:" + " " + project.description.value;
     sidebarSelector().appendChild(newdiv);
+
+    // Makes the sidebar project div clickable, expands to main page
+    newdiv.addEventListener("click", () => {
+        // If clicked, the project details are displayed on main page container
+        const mainBody = mainBodySelector();
+        mainBody.textContent = project.title.value + project.description.value + project.toDos.value;
+        return mainBody;
+    })
 }

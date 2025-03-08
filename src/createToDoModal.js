@@ -67,6 +67,8 @@ export function toDoFormItems() {
     submit.type = "button";
     parentForm.appendChild(submit);
 
+    // Handling submit button logic, creates to do items
+
     return parentForm;
 }
 
