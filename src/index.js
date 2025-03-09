@@ -161,6 +161,7 @@ function renderToDoItems() {
     
     const addToDoButton = document.createElement("button");
     addToDoButton.type = "button";
+    addToDoButton.innerText = "+"
 
     // Handles submit button
     addToDoButton.addEventListener("click", () => {
