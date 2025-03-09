@@ -88,6 +88,11 @@ function addProjectButton() {
     const addProject = document.createElement("button");
     addProject.type = "button";
     addProject.textContent = "Create Project";
+
+    // Adds styling to button
+    addProject.style.display = "block";
+    addProject.style.margin = "auto";
+
     // Appends to sidebar
     titleContainerSelect().appendChild(addProject);
     // Handles triggering of modal
@@ -155,10 +160,31 @@ function loadProject(index) {
 function renderToDoItems() {
     const main = toDoContainer();
 
+    // Creates to do title
     const toDoTitleLabel = document.createElement("label");
     toDoTitleLabel.innerText = "Task";
     const toDoTitle = document.createElement("input");
+
+    // Creates to do notes
+    const toDoNotesLabel = document.createElement("label");
+    toDoNotesLabel.innerText = "Notes";
+    const toDoNotes = document.createElement("input");
+
+    // Creates to do due date
+    const toDoDateLabel = document.createElement("label");
+    toDoDateLabel.innerText = "Due Date";
+    const dueDate = document.createElement("input");
+
+    // Creates priority handler
+    const priorityLabel = document.createElement("label");
+    priorityLabel.innerText = "Priority";
+    const priority = document.createElement("input");
+
+    // Adds "completed" check box
+
+
     
+    // Creates button to submit to do entry
     const addToDoButton = document.createElement("button");
     addToDoButton.type = "button";
     addToDoButton.innerText = "+"
@@ -166,12 +192,19 @@ function renderToDoItems() {
     // Handles submit button
     addToDoButton.addEventListener("click", () => {
         if (activeProjectIndex !== null && toDoTitle.value.trim() !== "") {
-            projectArray[activeProjectIndex].toDo.push(toDoTitle.value.trim());
+            projectArray[activeProjectIndex].toDo.push(toDoTitle.value.trim(), toDoNotes.value.trim(),
+            dueDate.value.trim(), priority.value.trim());
             loadProject(activeProjectIndex); // Refreshes the project viewer 
         }
     });
 
     main.appendChild(toDoTitleLabel);
     main.appendChild(toDoTitle);
+    main.appendChild(toDoNotesLabel);
+    main.appendChild(toDoNotes);
+    main.appendChild(toDoDateLabel);
+    main.appendChild(dueDate);
+    main.appendChild(priorityLabel);
+    main.appendChild(priority);
     main.appendChild(addToDoButton);
 }
