@@ -3,6 +3,12 @@ import "./styles.css";
 // An array used for storing project objects and their child to do items
 let projectArray = [];
 
+// Selects title container div
+function titleContainerSelect() {
+    const titleContain = document.querySelector("#titleContainer");
+    return titleContain;
+}
+
 // A function used for creating projects and pushing them into array
 function createProject(title, description) {
     const project = { title, description, toDo: [] };
@@ -76,7 +82,7 @@ function addProjectButton() {
     addProject.type = "button";
     addProject.textContent = "Create Project";
     // Appends to sidebar
-    selectSidebar().appendChild(addProject);
+    titleContainerSelect().appendChild(addProject);
     // Handles triggering of modal
     addProject.addEventListener("click", () => {
         // Create project button is removed
