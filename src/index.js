@@ -2,11 +2,18 @@ import "./styles.css";
 
 // An array used for storing project objects and their child to do items
 let projectArray = [];
+let activeProjectIndex = null; // Allows us to dynamically display projects
 
 // Selects title container div
 function titleContainerSelect() {
     const titleContain = document.querySelector("#titleContainer");
     return titleContain;
+}
+
+// This is where we will display our to do items
+function toDoContainer() {
+    const toDoDisplay = document.querySelector("#mainBody");
+    return toDoDisplay;
 }
 
 // A function used for creating projects and pushing them into array
@@ -91,7 +98,7 @@ function addProjectButton() {
     })
 }
 
-addProjectButton()
+addProjectButton() // Initializes button
 
 // Renders projects to sidebar
 function renderToSidebar() {
@@ -100,11 +107,70 @@ function renderToSidebar() {
 
     projectArray.forEach((project, index) => {
         let projectDiv = document.createElement("div");
-        projectDiv.textContent = project.title + " " + project.description;
+        projectDiv.classList.add("projectHolder");
+        projectDiv.textContent = `${project.title} - ${project.description}`;
+
+        // Allows divs to be clickable, expands to main section of page
+        projectDiv.addEventListener("click", () => {
+            loadProject(index);
+        });
+
         // Append to sidebar
         sidebar.appendChild(projectDiv);
         // Modify further to make divs clickable
     });
 }
 
-// TODO - FIX POSITIONING OF CREATE PROJECT BUTTON - PLACE AT TOP OF SIDEBAR
+// Responsible for loading project when div is clicked
+function loadProject(index) {
+    activeProjectIndex = index; // Dynamically updates active project
+    const main = toDoContainer(); // Loads into main area of page
+    main.innerHTML = ""; // Clears content before loading
+
+    // Displays project title
+    const projectTitle = document.createElement("p");
+    projectTitle.textContent = projectArray[index].title;
+    main.appendChild(projectTitle);
+
+    // Displays project description
+    const projectDescription = document.createElement("p");
+    projectDescription.textContent = projectArray[index].description;
+    main.appendChild(projectTitle);
+
+    // Displays to do entries when they're created
+    const toDoItems = document.createElement("div");
+    toDoItems.id = "toDoList";
+
+    projectArray[index].toDo.forEach(todo => {
+        let toDoDiv = document.createElement("div");
+        toDoDiv.textContent = todo;
+        toDoItems.appendChild(toDoDiv);
+    });
+
+    main.appendChild(toDoItems);
+    renderToDoItems() // Calls below function
+}
+
+// Responsible for adding to do items
+function renderToDoItems() {
+    const main = toDoContainer();
+
+    const toDoTitleLabel = document.createElement("label");
+    toDoTitleLabel.innerText = "Task";
+    const toDoTitle = document.createElement("input");
+    
+    const addToDoButton = document.createElement("button");
+    addToDoButton.type = "button";
+
+    // Handles submit button
+    addToDoButton.addEventListener("click", () => {
+        if (activeProjectIndex !== null && toDoTitle.value.trim() !== "") {
+            projectArray[activeProjectIndex].toDo.push(toDoTitle.value.trim());
+            loadProject(activeProjectIndex); // Refreshes the project viewer 
+        }
+    });
+
+    main.appendChild(toDoTitleLabel);
+    main.appendChild(toDoTitle);
+    main.appendChild(addToDoButton);
+}
