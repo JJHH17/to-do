@@ -83,11 +83,18 @@ function addProjectModal() {
 
 // Responsible for modal that allows user to create project
 function createProjectModal() {
+
+    // Parent div
+    const parentDiv = titleContainerSelect();
     // Creates Button
+    const addToDo = document.createElement("button");
+    addToDo.type = "button";
+    addToDo.textContent = "Add Item";
 
-    // Event listener
+    // Appends to page
+    parentDiv.appendChild(addToDo);
 
-    // Calls create project function 
+    return addToDo;
 }
 
 // Select Add Project button
@@ -171,55 +178,56 @@ function renderToDoItems() {
     // Handles is completed value, can be seperated into seperate function later
     let isCompletedValue = false;
 
-    // Creates to do title
-    const toDoTitleLabel = document.createElement("label");
-    toDoTitleLabel.innerText = "Task";
-    const toDoTitle = document.createElement("input");    
+    // Button click creates project
+    createProjectModal().addEventListener("click", () => {
+        // Creates to do title
+        const toDoTitleLabel = document.createElement("label");
+        toDoTitleLabel.innerText = "Task";
+        const toDoTitle = document.createElement("input");    
 
-    // Creates to do notes
-    const toDoNotesLabel = document.createElement("label");
-    toDoNotesLabel.innerText = "Notes";
-    const toDoNotes = document.createElement("input");
+        // Creates to do notes
+        const toDoNotesLabel = document.createElement("label");
+        toDoNotesLabel.innerText = "Notes";
+        const toDoNotes = document.createElement("input");
 
-    // Creates to do due date
-    const toDoDateLabel = document.createElement("label");
-    toDoDateLabel.innerText = "Due Date";
-    const dueDate = document.createElement("input");
+        // Creates to do due date
+        const toDoDateLabel = document.createElement("label");
+        toDoDateLabel.innerText = "Due Date";
+        const dueDate = document.createElement("input");
 
-    // Creates priority handler
-    const priorityLabel = document.createElement("label");
-    priorityLabel.innerText = "Priority";
-    const priority = document.createElement("input");
+        // Creates priority handler
+        const priorityLabel = document.createElement("label");
+        priorityLabel.innerText = "Priority";
+        const priority = document.createElement("input");
 
-    // Adds "completed" check box
-    const isComplete = document.createElement("label");
-    isComplete.innerText = "Completed";
-    const isCompleteInput = document.createElement("input");
-    isCompleteInput.type = "checkbox";
+        // Adds "completed" check box
+        const isComplete = document.createElement("label");
+        isComplete.innerText = "Completed";
+        const isCompleteInput = document.createElement("input");
+        isCompleteInput.type = "checkbox";
 
-    // Handles is completed button logic
-    isCompleteInput.addEventListener("change", () => {
-        isCompletedValue = isCompleteInput.checked;
-    });
+        // Handles is completed button logic
+        isCompleteInput.addEventListener("change", () => {
+            isCompletedValue = isCompleteInput.checked;
+        });
 
-    // Creates button to submit to do entry
-    const addToDoButton = document.createElement("button");
-    addToDoButton.type = "button";
-    addToDoButton.innerText = "+"
+        // Creates button to submit to do entry
+        const addToDoButton = document.createElement("button");
+        addToDoButton.type = "button";
+        addToDoButton.innerText = "+"
 
-    // Handles submit button
-    addToDoButton.addEventListener("click", () => {
-        if (activeProjectIndex !== null && toDoTitle.value.trim() !== "") {
-            projectArray[activeProjectIndex].toDo.push({
-                completed: isCompletedValue, 
-                title: toDoTitle.value.trim(), 
-                toDoNotes: toDoNotes.value.trim(), 
-                dueDate: dueDate.value.trim(), 
-                priority: priority.value.trim()});
-            loadProject(activeProjectIndex); // Refreshes the project viewer 
-        }
-    });
-
+        // Handles submit button
+        addToDoButton.addEventListener("click", () => {
+            if (activeProjectIndex !== null && toDoTitle.value.trim() !== "") {
+                projectArray[activeProjectIndex].toDo.push({
+                    completed: isCompletedValue, 
+                    title: toDoTitle.value.trim(), 
+                    toDoNotes: toDoNotes.value.trim(), 
+                    dueDate: dueDate.value.trim(), 
+                    priority: priority.value.trim()});
+                loadProject(activeProjectIndex); // Refreshes the project viewer 
+            }
+    })
     main.appendChild(isComplete);
     main.appendChild(isCompleteInput);
     main.appendChild(toDoTitleLabel);
@@ -231,4 +239,5 @@ function renderToDoItems() {
     main.appendChild(priorityLabel);
     main.appendChild(priority);
     main.appendChild(addToDoButton);
+    });
 }
