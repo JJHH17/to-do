@@ -174,12 +174,17 @@ function loadProject(index) {
 // Responsible for adding to do items
 function renderToDoItems() {
     const main = toDoContainer();
+    const createToDo = createProjectModal()
 
     // Handles is completed value, can be seperated into seperate function later
     let isCompletedValue = false;
 
     // Button click creates project
-    createProjectModal().addEventListener("click", () => {
+    createToDo.addEventListener("click", () => {
+
+        // Removes button on click
+        createToDo.remove();
+
         // Creates to do title
         const toDoTitleLabel = document.createElement("label");
         toDoTitleLabel.innerText = "Task";
